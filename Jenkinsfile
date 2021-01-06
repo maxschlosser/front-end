@@ -1,12 +1,15 @@
 pipeline {
     agent any
 
+    tools {nodejs "npm"}
+
     stages {
         stage('Build') {
             steps {
-                nodejs(nodeJSInstallationName: 'npm') {
-                    sh 'npm config ls'
-                }
+                    sh """
+                        npm install -g yarn
+                        yarn install
+                    """
             }
         }
         stage('Test') {
