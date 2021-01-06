@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'npm help npm'
+                nodejs(nodeJSInstallationName: 'npm', configId: '<config-file-provider-id>') {
+                    sh 'npm config ls'
+                }
             }
         }
         stage('Test') {
